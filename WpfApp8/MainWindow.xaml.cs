@@ -1,0 +1,61 @@
+﻿using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace WpfApp8
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void OpenButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.FileName = Textbox2.Text;
+            openFileDialog.ShowDialog();
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, Textbox1.Text);
+            }
+        }
+
+        private void CutButton_Click(object sender, RoutedEventArgs e)
+        {
+            Textbox1.Cut();
+        }
+
+        private void CopyButton_Click(object sender, RoutedEventArgs e)
+        {
+            Textbox1.Copy();
+        }
+
+        private void PasteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Textbox1.Paste();
+        }
+    }
+}
